@@ -13,7 +13,7 @@ public class ThymeleafConfig {
     public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver resolver =
             new SpringResourceTemplateResolver();
-        resolver.setPrefix("classpath:/custom-templates/"); // โฟลเดอร์ที่กำหนดเอง
+        resolver.setPrefix("classpath:/my-templates/"); // โฟลเดอร์ที่กำหนดเอง
         resolver.setSuffix(".html");
         resolver.setTemplateMode("HTML");
         resolver.setCharacterEncoding("UTF-8");
