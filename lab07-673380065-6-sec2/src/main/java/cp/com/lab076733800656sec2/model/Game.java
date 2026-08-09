@@ -1,8 +1,6 @@
 package cp.com.lab076733800656sec2.model;
 
 import cp.com.lab076733800656sec2.strategy.DiscountContext;
-import jakarta.annotation.Nullable;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -38,7 +36,6 @@ public class Game {
 
     private double price;
 
-    @Nullable
     private String discountType;
 
     public String getDiscountName() {
