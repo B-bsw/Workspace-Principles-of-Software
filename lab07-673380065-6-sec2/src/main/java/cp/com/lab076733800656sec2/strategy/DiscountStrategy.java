@@ -1,4 +1,5 @@
 package cp.com.lab076733800656sec2.strategy;
 
-public class DiscountStrategy {
+public interface DiscountStrategy {
+    public double calculate(double price);
 }

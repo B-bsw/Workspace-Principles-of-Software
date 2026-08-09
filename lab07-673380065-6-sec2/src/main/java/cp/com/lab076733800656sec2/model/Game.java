@@ -1,6 +1,8 @@
 package cp.com.lab076733800656sec2.model;
 
+import cp.com.lab076733800656sec2.strategy.DiscountContext;
 import jakarta.annotation.Nullable;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -38,14 +40,19 @@ public class Game {
     private String discountType;
 
     public String getDiscountName() {
+        if (discountType.equals("NONE")) {
+            return "ราคาปกติ";
+        } else if (discountType.equals("STUDENT")) {
+            return "ส่วนลดนักศึกษา 10%";
+        } else if (discountType.equals("SEASONAL")) {
+            return "ส่วนลดเทศกาล 20%";
+        }
         return discountType;
     }
 
     public double getFinalPrice() {
-        if (discountType == null) {
-            return price;
-        }
+        DiscountContext discountContext = new DiscountContext();
 
-        return price;
+        return discountContext.matchingDiscount(price, discountType);
     }
 }
