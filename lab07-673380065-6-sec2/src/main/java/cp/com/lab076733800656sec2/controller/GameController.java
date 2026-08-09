@@ -52,9 +52,6 @@ public class GameController {
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable int id, Model model) {
         model.addAttribute("game", gameService.getById(id));
-        System.out.println(
-            "Release Date: " + gameService.getById(id).getReleaseDate()
-        );
         return "games/edit";
     } // Page Edit
 
