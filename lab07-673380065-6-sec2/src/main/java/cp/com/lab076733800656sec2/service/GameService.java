@@ -17,7 +17,6 @@ public class GameService {
     }
 
     public void saveGame(Game game) {
-        System.out.println(game);
         gameRepository.save(game);
     }
 

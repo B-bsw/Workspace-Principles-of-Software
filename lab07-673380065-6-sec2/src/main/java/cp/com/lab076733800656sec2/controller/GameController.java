@@ -47,4 +47,17 @@ public class GameController {
         gameService.deleteByid(id);
         return "redirect:/games";
     }
+
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable int id, Model model) {
+        model.addAttribute(gameService.getById(id));
+        return "games/edit";
+    }
+
+    @PostMapping("/update/{id}")
+    public String update(@PathVariable int id, @ModelAttribute Game game) {
+        game.setId(id);
+        gameService.saveGame(game);
+        return "redirect:/games";
+    }
 }
