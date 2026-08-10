@@ -39,19 +39,10 @@ public class Game {
     private String discountType;
 
     public String getDiscountName() {
-        if (discountType.equals("NONE")) {
-            return "ราคาปกติ";
-        } else if (discountType.equals("STUDENT")) {
-            return "ส่วนลดนักศึกษา 10%";
-        } else if (discountType.equals("SEASONAL")) {
-            return "ส่วนลดเทศกาล 20%";
-        }
-        return discountType;
+        return new DiscountContext().getDiscountName(discountType);
     }
 
     public double getFinalPrice() {
-        DiscountContext discountContext = new DiscountContext();
-
-        return discountContext.matchingDiscount(price, discountType);
+        return new DiscountContext().getDiscountPrice(price, discountType);
     }
 }

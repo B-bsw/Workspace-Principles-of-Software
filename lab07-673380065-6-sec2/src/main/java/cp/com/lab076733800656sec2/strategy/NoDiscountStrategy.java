@@ -1,8 +1,14 @@
 package cp.com.lab076733800656sec2.strategy;
 
-public class NoDiscountStrategy implements DiscountStrategy{
+public class NoDiscountStrategy implements DiscountStrategy {
+
     @Override
-    public double calculate(double price){
+    public double calculate(double price) {
         return price;
+    }
+
+    @Override
+    public String discountName() {
+        return "ราคาปกติ";
     }
 }

@@ -2,17 +2,22 @@ package cp.com.lab076733800656sec2.strategy;
 
 public class DiscountContext {
 
-    public double matchingDiscount(double price, String discountType) {
-        DiscountStrategy discountStrategy;
-
-        if (discountType.equals("STUDENT")) {
-            discountStrategy = new StudentDiscountStrategy();
-        } else if (discountType.equals("SEASONAL")) {
-            discountStrategy = new SeasonalSaleStrategy();
-        } else {
-            discountStrategy = new NoDiscountStrategy();
+    private DiscountStrategy getStrategy(String discountType) {
+        switch (discountType) {
+            case "STUDENT":
+                return new StudentDiscountStrategy();
+            case "SEASONAL":
+                return new SeasonalSaleStrategy();
+            default:
+                return new NoDiscountStrategy();
         }
+    }
 
-        return discountStrategy.calculate(price);
+    public String getDiscountName(String discountType) {
+        return getStrategy(discountType).discountName();
+    }
+
+    public double getDiscountPrice(double price, String discountType) {
+        return getStrategy(discountType).calculate(price);
     }
 }

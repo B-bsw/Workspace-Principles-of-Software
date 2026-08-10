@@ -6,4 +6,9 @@ public class SeasonalSaleStrategy implements DiscountStrategy {
     public double calculate(double price) {
         return price - price * 0.2;
     }
+
+    @Override
+    public String discountName() {
+        return "ส่วนลดเทศกาล 20%";
+    }
 }
