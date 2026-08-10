@@ -21,7 +21,6 @@ public class GameController {
     @GetMapping()
     public String list(Model model) {
         model.addAttribute("games", gameService.getAll());
-        model.addAttribute("message", "Add new game Success!");
         return "games/list";
     } // Page List
 
