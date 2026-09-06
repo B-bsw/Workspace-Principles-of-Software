@@ -20,8 +20,55 @@ public class Review {
     @Column
     private LocalDate reviewDate;
 
-    // FK อยู่ที่ฝั่ง Many เสมอ
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getReviewer() {
+        return reviewer;
+    }
+
+    public Integer getRating() {
+        return rating;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public LocalDate getReviewDate() {
+        return reviewDate;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setReviewer(String reviewer) {
+        this.reviewer = reviewer;
+    }
+
+    public void setRating(Integer rating) {
+        this.rating = rating;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public void setReviewDate(LocalDate reviewDate) {
+        this.reviewDate = reviewDate;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 }
