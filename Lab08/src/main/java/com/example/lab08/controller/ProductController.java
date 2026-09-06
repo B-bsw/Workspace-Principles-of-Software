@@ -38,25 +38,25 @@ public class ProductController {
     }
 
     @GetMapping("/edit/{id}")
-    public String editProductPage(Model model, @PathVariable Long id) {
+    public String editProductPage(Model model, @PathVariable("id") Long id) {
         model.addAttribute("product", productService.getProductById(id));
         return "products/edit";
     }
 
     @PostMapping("/update/{id}")
-    public String updateProduct(Model model, @PathVariable Long id, @ModelAttribute Product product) {
+    public String updateProduct(Model model, @PathVariable("id") Long id, @ModelAttribute Product product) {
         productService.editProductById(id, product);
         return "redirect:/products";
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteProductPage(Model model, @PathVariable Long id) {
+    public String deleteProductPage(Model model, @PathVariable("id") Long id) {
         model.addAttribute("product", productService.getProductById(id));
         return "products/delete";
     }
 
     @PostMapping("/delete/{id}")
-    public String deleteProduct(Model model, @PathVariable Long id) {
+    public String deleteProduct(Model model, @PathVariable("id") Long id) {
         productService.deleteProductById(id);
         model.addAttribute("message", "Product has been deleted");
         return "redirect:/products";
