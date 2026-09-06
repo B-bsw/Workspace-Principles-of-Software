@@ -48,4 +48,17 @@ public class ProductController {
         productService.editProductById(id, product);
         return "redirect:/products";
     }
+
+    @GetMapping("/delete/{id}")
+    public String deleteProductPage(Model model, @PathVariable Long id) {
+        model.addAttribute("product", productService.getProductById(id));
+        return "products/delete";
+    }
+
+    @PostMapping("/delete/{id}")
+    public String deleteProduct(Model model, @PathVariable Long id) {
+        productService.deleteProductById(id);
+        model.addAttribute("message", "Product has been deleted");
+        return "redirect:/products";
+    }
 }
