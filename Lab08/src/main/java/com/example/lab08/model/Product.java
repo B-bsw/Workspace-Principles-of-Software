@@ -28,7 +28,7 @@ public class Product {
     @Column
     private String discountType;
 
-    @OneToOne(cascade = ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "detail_id", referencedColumnName = "id")
     private ProductDetail detail;
 

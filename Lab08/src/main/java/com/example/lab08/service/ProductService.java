@@ -20,13 +20,12 @@ public class ProductService {
 
     public List<Product> getAllProduct() {
         List<Product> products = productRepository.findAll();
-
         products.forEach(product -> product.setDiscountedPrice(discountContext.calculateDiscount(product.getDiscountType(), product.getPrice())));
-
         return products;
     }
 
     public void insertProduct(Product product) {
+        product.getReviews().forEach(review -> review.setProduct(product));
         productRepository.save(product);
     }
 }
