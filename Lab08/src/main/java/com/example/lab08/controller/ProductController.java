@@ -36,4 +36,16 @@ public class ProductController {
         model.addAttribute("message", "Product has been inserted");
         return "redirect:/products";
     }
+
+    @GetMapping("/edit/{id}")
+    public String editProductPage(Model model, @PathVariable Long id) {
+        model.addAttribute("product", productService.getProductById(id));
+        return "products/edit";
+    }
+
+    @PostMapping("/update/{id}")
+    public String updateProduct(Model model, @PathVariable Long id, @ModelAttribute Product product) {
+        productService.editProductById(id, product);
+        return "redirect:/products";
+    }
 }

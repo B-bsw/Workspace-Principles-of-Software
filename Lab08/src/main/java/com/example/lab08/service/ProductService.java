@@ -28,4 +28,13 @@ public class ProductService {
         product.getReviews().forEach(review -> review.setProduct(product));
         productRepository.save(product);
     }
+
+    public Product getProductById(Long id) {
+        return productRepository.findById(id).get();
+    }
+
+    public void editProductById(Long id, Product product) {
+        product.setId(id);
+        productRepository.save(product);
+    }
 }
