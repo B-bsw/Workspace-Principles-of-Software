@@ -1,5 +1,6 @@
 package com.example.lab08.model;
 
+import com.example.lab08.strategy.DiscountContext;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ public class Product {
     private String brand;
     @Column
     private Integer stock;
-    @Column
+    @Column(nullable = false)
     private Double price;
     @Column
     private String discountType;
@@ -32,7 +33,18 @@ public class Product {
     private ProductDetail detail;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private List<Review> reviews =  new ArrayList<>();
+    private List<Review> reviews = new ArrayList<>();
+
+    @Transient
+    private Double discountedPrice;
+
+    public Double getDiscountedPrice() {
+        return discountedPrice;
+    }
+
+    public void setDiscountedPrice(Double discountedPrice) {
+        this.discountedPrice = discountedPrice;
+    }
 
     public Long getId() {
         return id;

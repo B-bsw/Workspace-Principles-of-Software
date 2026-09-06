@@ -30,8 +30,10 @@ public class ProductController {
         return "products/add";
     }
 
-//    @PostMapping()
-//    public String insertProduct(@RequestBody Product product) {
-//        return "redirect:/products";
-//    }
+    @PostMapping("/save")
+    public String insertProduct(Model model, @ModelAttribute Product product) {
+        productService.insertProduct(product);
+        model.addAttribute("message", "Product has been inserted");
+        return "redirect:/products";
+    }
 }
