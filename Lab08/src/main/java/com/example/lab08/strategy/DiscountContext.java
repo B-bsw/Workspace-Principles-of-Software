@@ -6,9 +6,18 @@ import java.util.Map;
 
 @Component
 public class DiscountContext {
-   private Map<String, DiscountStrategy> discountStrategies;
+    private final Map<String, DiscountStrategy> strategies;
 
-   public DiscountContext(Map<String, DiscountStrategy> discountStrategies) {
-       this.discountStrategies = discountStrategies;
-   }
+    public DiscountContext(Map<String, DiscountStrategy> strategies) {
+        this.strategies = strategies;
+    }
+
+    public double calculateDiscount(String discountType, double price) {
+        DiscountStrategy strategy = strategies.getOrDefault(
+                discountType,
+                strategies.get("NONE")
+        );
+
+        return strategy.calculateDiscount(price);
+    }
 }
