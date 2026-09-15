@@ -12,8 +12,11 @@ public class AccountService {
     @Autowired
     private AccountRepository accountRepository;
 
-    public void add(Account account) {
-        accountRepository.save(account);
+    public Account add(Account account) {
+        if (account.getBalance().equals(null)) {
+            account.setBalance(0.0);
+        }
+        return accountRepository.save(account);
     }
 
     public Optional<Account> findByIdAccount(Long id) {

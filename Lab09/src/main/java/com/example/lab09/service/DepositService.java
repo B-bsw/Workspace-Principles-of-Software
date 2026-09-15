@@ -23,9 +23,17 @@ public class DepositService {
 
     @Transactional
     public void deposit(Long accountId, Double amount) {
-        Account account = accountRepository.findById(accountId).orElseThrow();
+        Account account = accountRepository
+            .findById(accountId)
+            .orElseThrow(() ->
+                new RuntimeException("Account not found: " + accountId)
+            );
 
-        account.setBalance(account.getBalance() + amount); // บวกจากของเก่า
+        account.setBalance(
+            account.getBalance().equals(null)
+                ? 0.0
+                : account.getBalance() + amount
+        ); // บวกจากของเก่า
 
         // บันทึก acc && amount เข้า transaction เพื่อบันทึก
         DepositTransaction depositTransaction = new DepositTransaction();
