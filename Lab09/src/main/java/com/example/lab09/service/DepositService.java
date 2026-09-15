@@ -24,13 +24,13 @@ public class DepositService {
     @Transactional
     public void deposit(Long accountId, Double amount) {
         Account account = accountRepository.findById(accountId).orElseThrow();
-        DepositTransaction depositTransaction = new DepositTransaction();
-
-        // บันทึก acc && amount เข้า transaction เพื่อบันทึก
-        depositTransaction.setAccount(account);
-        depositTransaction.setAmount(amount);
 
         account.setBalance(account.getBalance() + amount); // บวกจากของเก่า
+
+        // บันทึก acc && amount เข้า transaction เพื่อบันทึก
+        DepositTransaction depositTransaction = new DepositTransaction();
+        depositTransaction.setAccount(account);
+        depositTransaction.setAmount(amount);
 
         accountRepository.save(account);
         depositRepository.save(depositTransaction);
