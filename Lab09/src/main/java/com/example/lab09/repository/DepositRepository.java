@@ -1,4 +1,7 @@
 package com.example.lab09.repository;
 
-public class DepositRepository {
+import com.example.lab09.model.DepositTransaction;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface DepositRepository extends JpaRepository<DepositTransaction, Long> {
 }
